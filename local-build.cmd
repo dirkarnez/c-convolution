@@ -19,4 +19,5 @@ cmake.exe -G"MinGW Makefiles" ^
 -B./cmake-build &&^
 cd cmake-build &&^
 cmake --build . &&^
+cd .. &&^
 pause
