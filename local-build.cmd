@@ -1,22 +1,24 @@
 REM run as Administrator
 @echo off
-cd /d %~dp0
-set DOWNLOAD_DIR=%USERPROFILE%\Downloads
-set DOWNLOAD_DIR_LINUX=%DOWNLOAD_DIR:\=/%
-SET PATH=^
-%DOWNLOAD_DIR%\PortableGit\bin;^
-%DOWNLOAD_DIR%\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\mingw64;^
-%DOWNLOAD_DIR%\x86_64-8.1.0-release-posix-seh-rt_v6-rev0\mingw64\bin;^
-%DOWNLOAD_DIR%\cmake-3.26.1-windows-x86_64\bin;^
 
-@REM set PATH=^
-@REM D:\Softwares\x86_64-8.1.0-release-win32-seh-rt_v6-rev0\mingw64;^
-@REM D:\Softwares\x86_64-8.1.0-release-win32-seh-rt_v6-rev0\mingw64\bin;^
-@REM D:\Softwares\cmake-3.23.0-rc1-windows-x86_64\bin;
+cd /d %~dp0
+
+set DOWNLOADS_DIR=%USERPROFILE%\Downloads
+set DOWNLOADS_DIR_LINUX=%DOWNLOADS_DIR:\=/%
+
+@REM set PREFIX=%DOWNLOAD_DIR%
+set PREFIX=D:\Softwares
+
+SET PATH=^
+%PREFIX%\PortableGit\bin;^
+%PREFIX%\winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1\mingw64;^
+%PREFIX%\winlibs-x86_64-posix-seh-gcc-11.2.0-mingw-w64-9.0.0-r1\mingw64\bin;^
+%PREFIX%\cmake-3.29.3-windows-x86_64\bin;
 
 cmake.exe -G"MinGW Makefiles" ^
 -DCMAKE_BUILD_TYPE=Debug ^
 -B./cmake-build &&^
 cd cmake-build &&^
 cmake --build . &&^
+cd .. &&^
 pause
